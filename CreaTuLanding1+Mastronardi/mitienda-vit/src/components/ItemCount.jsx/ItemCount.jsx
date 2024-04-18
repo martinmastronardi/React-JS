@@ -6,12 +6,12 @@ export const ItemCount = () => {
     
 const handlleadd = () => {
     setCantItems(cantItem + 1)
-    console.log('click +', cantItem)
-
+    
 }
 const handlleSubs = () => {
+    if (cantItem > 0){
     setCantItems(cantItem - 1)
-    console.log('click +', cantItem)
+}
 }
 
   return (
