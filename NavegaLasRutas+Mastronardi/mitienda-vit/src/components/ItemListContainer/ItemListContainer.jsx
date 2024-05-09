@@ -1,18 +1,15 @@
 import styles from "./itemlistcontainer.module.css";
 import { useEffect, useState } from "react";
 import { getproducts, productos } from "../../utils/MockData";
-
+import { ItemList } from "../ItemList/ItemList";
 export const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getproducts()
       .then((res) => {
-        console.log(res);
         setProducts(res);
-        
       })
       .catch((error) => {
-        console.log(error);
       });
   }, []);
 
@@ -20,7 +17,7 @@ export const ItemListContainer = () => {
     <div>
       <h1>YUMBREL</h1>
       <h2>Energia Positiva</h2>
-      {console.log(products)}
+      <ItemList productsList={products} />
     </div>
   );
 };
