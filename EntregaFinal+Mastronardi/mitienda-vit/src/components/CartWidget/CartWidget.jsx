@@ -2,7 +2,7 @@ import carrito from '../../assets/carrito.ico'
 import styles from './cartwidget.module.css'
 export const CartWidget = () => {
     return (
-        <div>
+        <div className={styles.compra}>
                 <img src={carrito} alt="carrito" className={styles.carrito}/>
                 <span> 0 </span>
         </div>
