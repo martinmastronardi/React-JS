@@ -3,23 +3,42 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background: linear-gradient(to bottom, #edb4eb 0%, #f4b0dc 49%, #f791e4 51%, #ffd8ff 100%);
   position: sticky;
   top: 0;
-  width: 100%;
+  width: auto;
+  padding: 3px;
+}
+
+.logo_navbar {
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar ul a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: color 0.3s ease;
 }
 
 
-.logo_navbar{
-    width: 70px;
-    height: 70px;
-    margin: 5px;
-  }
-
-  .navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
+.navbar ul a:hover {
+  color: #4c39fb; 
+}
