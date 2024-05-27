@@ -14,8 +14,9 @@ export const Navbar = () => {
           <li><Link to="/category/Sahumerios">SAHUMERIOS</Link></li>
           <li><Link to="/category/CascadasHumo">CASCADAS DE HUMO</Link></li>
           <li><Link to="/category/PiedrasEnergeticas">PIEDRAS ENERGETICAS</Link></li>
-          <li><Link to="/Contactos">CONTACTENOS</Link></li>
           <li><Link to="/about">ABOUT US</Link></li>
+          <li><Link to="/dashboard">Dash</Link></li>
+          <li><Link to="/cart">Cart</Link></li>
         </ul>
       </nav>
       <CartWidget/>

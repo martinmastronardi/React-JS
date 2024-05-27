@@ -27,7 +27,7 @@ export const ItemCount = ({ stock, initial, handlleAddToCart }) => {
 
   return (
     <>
-      <div>ItemCount</div>
+      <div>Cantidad</div>
       <div>
         <button onClick={handlleAdd}> + </button>
         <span> {cantItems} </span>

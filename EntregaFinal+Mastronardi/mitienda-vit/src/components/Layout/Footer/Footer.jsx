@@ -15,7 +15,7 @@ export const Footer = () => {
             <img src={whatsApp} alt="whatsapp" />
         </a>
     </div>
-    <p>Creado por Martin Mastronardi - &copy;2023</p>
+    <p>Creado por Martin Mastronardi - &copy;2024</p>
     <a>
         <img className={styles.logofooter} src={logo} alt="Logo Yumbrel" />
     </a>

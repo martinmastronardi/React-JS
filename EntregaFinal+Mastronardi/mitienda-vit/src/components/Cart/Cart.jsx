@@ -9,8 +9,8 @@ export const Cart = () => {
   const { cart, totalPrice, removeItem, clearCart } = useCartContext();
   const [formData, setFormData] = useState({ name: "", tel: "", email: "" });
 
-  const handleRemoveItem = (id, price, qty) => {
-    removeItem(id, price, qty);
+  const handleRemoveItem = (id, precio, qty) => {
+    removeItem(id, precio, qty);
   };
 
   const handleClearCart = () => {
@@ -49,30 +49,30 @@ export const Cart = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Qty</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {cart?.map(({ id, name, price, qty }, index) => {
+          {cart?.map(({ id, nombre, precio, qty }, index) => {
             return (
               <tr key={index}>
                 <td>{id}</td>
-                <td>{name}</td>
-                <td>{price}</td>
+                <td>{nombre}</td>
+                <td>{precio}</td>
                 <td>{qty}</td>
                 <td>
-                  <button onClick={() => handleRemoveItem(id, price, qty)}>
-                    Remove Item
+                  <button onClick={() => handleRemoveItem(id, precio, qty)}>
+                  🗑️
                   </button>
                 </td>
               </tr>
             );
           })}
           <tr>
-            <td colSpan={4}>Total price</td>
+            <td colSpan={4}>Total</td>
             <td> $ {totalPrice}</td>
           </tr>
         </tbody>
