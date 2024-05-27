@@ -1,0 +1,37 @@
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Spinner } from "../spinner/Spinner.jsx";
+import { ItemDetail } from "../ItemDetail/ItemDetail";
+import { db } from "../../firebase/dbConnection.js";
+import { collection, getDoc, doc } from "firebase/firestore";
+
+export const ItemDetailContainer = () => {
+  const { prodId } = useParams();
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    const productsCollection = collection(db, "productos");
+    const refDoc = doc(productsCollection, prodId);
+
+    getDoc(refDoc)
+      .then((doc) => {
+        setProduct({ id: doc.id, ...doc.data() });
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+    
+  }, [prodId]);
+
+  return loading === true ? (
+    <Spinner />
+  ) : (
+    <div>
+      <ItemDetail {...product} />
+    </div>
+  );
+};

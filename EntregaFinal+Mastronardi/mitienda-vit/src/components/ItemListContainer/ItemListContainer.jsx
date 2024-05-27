@@ -1,33 +1,71 @@
 import styles from "./itemlistcontainer.module.css";
-import { useEffect, useState } from "react";
-import { getproducts, productos } from "../../utils/MockData";
+import { useState, useEffect } from "react";
 import { ItemList } from "../ItemList/ItemList";
-import { useFetch } from "../Hooks/useFetch";
+import { Spinner } from "../spinner/Spinner";
+import { useParams } from "react-router-dom";
+import { db } from "../../firebase/dbConnection";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 
-
-export const ItemListContainer = () => {
+export const ItemListContainer = ({ bgBlue, greeting }) => {
+  const defaultTitle = "Titulo por defecto";
   const [products, setProducts] = useState([]);
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
+  const { catId } = useParams();
+  
   useEffect(() => {
-    getproducts()
-      .then((res) => {
-        setProducts(res);
-        setLoading(false);
-      })
-      .catch((error) => {
-      });
-  }, []);
+    setLoading(true);
+
+    const productsCollection = collection(db, "productos");
+
+    if (catId) {
+      const cons = query(
+        productsCollection,
+        where("category", "array-contains", catId)
+      );
+
+      getDocs(cons)
+        .then(({ docs }) => {
+          const prodFromDocs = docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          setProducts(prodFromDocs);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      getDocs(productsCollection)
+        .then(({ docs }) => {
+          const prodFromDocs = docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+
+          setProducts(prodFromDocs);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [catId]);
 
   return (
-    <div>
-      <h1>YUMBREL</h1>
-      <h2>Energia Positiva</h2>
-      {loading === true ? (<h3>Cargando...</h3>) : ( 
-      <ItemList productsList={products} />
-    )}
-      </div>
-  
+    <main>
+      <h1> {greeting ? greeting : defaultTitle} </h1>
+      {loading === true ? (
+        <Spinner />
+      ) : (
+        <div>
+          <ItemList productsList={products} />
+         
+        </div>
+      )}
+    </main>
   );
 };
