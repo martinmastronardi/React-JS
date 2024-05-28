@@ -3,7 +3,7 @@ import { useCartContext } from "../../Context/CartContext";
 import { useState } from "react";
 import { db } from "../../firebase/dbConnection";
 import { addDoc, collection } from "firebase/firestore";
-import { set } from "firebase/database";
+// import { set } from "firebase/database";
 
 export const Cart = () => {
   const { cart, totalPrice, removeItem, clearCart } = useCartContext();
@@ -18,10 +18,7 @@ export const Cart = () => {
   };
 
   const handleSaveCart = () => {
-    console.log("Saving in Database");
-    console.log("formData", formData);
-    console.log("cart", cart);
-
+   
     const ordersCollection = collection(db, "orders");
     const newOrder = {
       buyer: formData,
@@ -43,8 +40,12 @@ export const Cart = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  if (cart.length === 0) {
+    return <p>El carrito de compras está vacío.</p>;
+  }
   return (
     <>
+    
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -101,6 +102,7 @@ export const Cart = () => {
         onChange={(e) => handleOnChange(e)}
       />
       <button onClick={handleSaveCart}>Finalizar Compra</button>
+    
     </>
   );
 };
