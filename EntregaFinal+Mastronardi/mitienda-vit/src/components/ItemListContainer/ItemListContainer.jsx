@@ -18,7 +18,7 @@ export const ItemListContainer = ({ bgBlue, greeting }) => {
     setLoading(true);
 
     const productsCollection = collection(db, "productos");
-    console.log(catId);
+    
     if (catId) {
       const cons = query(
         productsCollection,

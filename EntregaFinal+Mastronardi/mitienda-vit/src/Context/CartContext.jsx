@@ -20,15 +20,14 @@ const CartContextProvider = ({ children }) => {
     if (cart) {
       setCart(cart);
       setTotalQty(cart.reduce((acc, elem) => acc + elem.qty, 0));
-      setTotalPrice(cart.reduce((acc, elem) => acc + elem.price * elem.qty, 0));
+      setTotalPrice(cart.reduce((acc, elem) => acc + elem.precio * elem.qty, 0));
     }
   }, []);
 
 
   const addToCart = (item, qty) => {
-    console.log(item);
     setTotalQty(totalQty + qty);
-    setTotalPrice(totalPrice + item.price * qty);
+    setTotalPrice(totalPrice + item.precio * qty);
     let newCart = [];
 
     if (isInCart(item.id)) {
@@ -52,9 +51,8 @@ const CartContextProvider = ({ children }) => {
     return cart.find((elem) => elem.id === id);
   };
 
-  const removeItem = (id, price, qty) => {
-    console.log(price, qty);
-    setTotalPrice(totalPrice - price * qty);
+  const removeItem = (id, precio, qty) => {
+    setTotalPrice(totalPrice - precio * qty);
     setTotalQty(totalQty - qty);
 
     const newCart = cart.filter((elem) => elem.id !== id);
