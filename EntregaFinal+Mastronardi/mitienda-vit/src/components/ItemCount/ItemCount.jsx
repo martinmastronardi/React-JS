@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import style from "./ItemCount.module.css";
 
 export const ItemCount = ({ stock, initial, handlleAddToCart }) => {
   const navigate = useNavigate();
@@ -29,15 +31,15 @@ export const ItemCount = ({ stock, initial, handlleAddToCart }) => {
     <>
       <div>Cantidad</div>
       <div>
-        <button onClick={handlleAdd}> + </button>
+        <Button className={style.buttonEstilo} variant="secondary" onClick={handlleAdd}> + </Button>
         <span> {cantItems} </span>
-        <button onClick={handlleSubs}> - </button>
+        <Button className={style.buttonEstilo} variant="secondary" onClick={handlleSubs}> - </Button>
       </div>
 
       {pordAgregado ? (
-        <button onClick={handleTerminarCompra}> Terminar Compra </button>
+        <Button onClick={handleTerminarCompra}> Terminar Compra </Button>
       ) : (
-        <button onClick={handleAgregarAlCarrito}>Agregar al carrito</button>
+        <Button onClick={handleAgregarAlCarrito}>Agregar al carrito</Button>
       )}
     </>
   );

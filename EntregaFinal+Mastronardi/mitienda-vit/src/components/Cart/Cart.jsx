@@ -41,12 +41,14 @@ export const Cart = () => {
   };
 
   if (cart.length === 0) {
-    return <p>El carrito de compras está vacío.</p>;
-  }
+    return <div>
+    <p>El carrito de compras está vacío.</p>
+    </div>
+    }
   return (
     <>
     
-      <Table striped bordered hover>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>#</th>
@@ -78,7 +80,7 @@ export const Cart = () => {
           </tr>
         </tbody>
       </Table>
-      <button onClick={handleClearCart}>Clear Cart</button>
+      <button onClick={handleClearCart}>Vaciar Carrito</button>
 
       <input
         type="text"

@@ -1,5 +1,5 @@
 import React from 'react'
-import styes from './Item.module.css'
+import style from './Item.module.css'
 import { Link } from "react-router-dom";
 
 
@@ -8,8 +8,8 @@ export const Item = ({ id, nombre, img }) => {
   }
   return (
     
-    <div className={styes.item}>
-        <div className={styes.img}>
+    <div className={style.item}>
+        <div className={style.img}>
             <img src={img} alt="name"/>
         </div>
         <div>
