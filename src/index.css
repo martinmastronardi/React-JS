@@ -6,4 +6,6 @@
 
 body{
   background-image: url(../src/assets/fondo.webp);
+  overflow: auto;
 }
+

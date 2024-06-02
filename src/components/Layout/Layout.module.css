@@ -1,0 +1,14 @@
+.layoutContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .mainContainer {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    margin-top: 2px; 
+    margin-bottom: 40px; 
+  }
+  
