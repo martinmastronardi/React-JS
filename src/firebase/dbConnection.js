@@ -7,12 +7,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCFMP6OXSdyAnddxKe3ThmwBFRrLfRqDJM",
-  authDomain: "yumbrelstore.firebaseapp.com",
-  projectId: "yumbrelstore",
-  storageBucket: "yumbrelstore.appspot.com",
-  messagingSenderId: "517167052969",
-  appId: "1:517167052969:web:d6fc7821148589a529d1b8"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
