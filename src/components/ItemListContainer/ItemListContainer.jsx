@@ -1,31 +1,37 @@
-import styles from "./itemlistcontainer.module.css";
 import { useState, useEffect } from "react";
 import { ItemList } from "../ItemList/ItemList";
 import { Spinner } from "../spinner/Spinner";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { db } from "../../firebase/dbConnection";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-
-export const ItemListContainer = ({ bgBlue, greeting }) => {
-  const defaultTitle = "Titulo por defecto";
+export const ItemListContainer = () => {
+  const defaultTitle = "Todos Nuestros Productos";
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
-  const { catId } = useParams();
-  
+  const getCategoryFromPath = () => {
+    const path = location.pathname;
+    const parts = path.split("/");
+    const categoryIndex = parts.indexOf("category");
+    if (categoryIndex !== -1 && parts.length > categoryIndex + 1) {
+      return parts[categoryIndex + 1];
+    }
+    return "";
+  };
+
+  const category = getCategoryFromPath();
+
   useEffect(() => {
     setLoading(true);
-
     const productsCollection = collection(db, "productos");
     
-    if (catId) {
+    if (category) {
       const cons = query(
         productsCollection,
-        where("category", "array-contains", catId)
-
+        where("category", "array-contains", category)
       );
-
 
       getDocs(cons)
         .then(({ docs }) => {
@@ -55,17 +61,24 @@ export const ItemListContainer = ({ bgBlue, greeting }) => {
           console.log(error);
         });
     }
-  }, [catId]);
+  }, [category]);
+
+  const categoryGreetings = {
+    Sahumerios: "Sahumerios",
+    CascadasHumo: "Cascadas de Humo",
+    PiedrasEnergeticas: "Piedras Energéticas"
+  };
+
+  const greeting = categoryGreetings[category] || defaultTitle;
 
   return (
     <main>
-      <h1> {greeting ? greeting : defaultTitle} </h1>
+      <h1>{greeting}</h1>
       {loading === true ? (
         <Spinner />
       ) : (
         <div>
           <ItemList productsList={products} />
-         
         </div>
       )}
     </main>

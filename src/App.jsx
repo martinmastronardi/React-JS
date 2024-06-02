@@ -12,9 +12,7 @@ import  CartContextProvider  from "./Context/CartContext.jsx";
 
 const App = () => {
   useEffect(() => {
-    //llamada a backedn para ver si el pass y contraseña es correcto
     const llamadaABack = true;
-    // si es correcto
     if (llamadaABack) {
       localStorage.setItem("isAuth", "true  ");
     } else {
