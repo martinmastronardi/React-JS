@@ -39,7 +39,7 @@ export const ItemCount = ({ stock, initial, handlleAddToCart }) => {
       {pordAgregado ? (
         <Button onClick={handleTerminarCompra}> Terminar Compra </Button>
       ) : (
-        <Button onClick={handleAgregarAlCarrito}>Agregar al carrito</Button>
+        <Button onClick={handleAgregarAlCarrito} disabled={cantItems < 1}>Agregar al carrito</Button>
       )}
     </>
   );

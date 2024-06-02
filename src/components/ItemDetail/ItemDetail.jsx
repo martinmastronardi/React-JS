@@ -1,6 +1,7 @@
 import { ItemCount } from "../ItemCount/ItemCount";
 import { useCartContext } from "../../Context/CartContext";
 import Card from "react-bootstrap/Card";
+import style from "./ItemDetail.module.css"
 
 export const ItemDetail = (item) => {
   const { nombre, descripcion, precio, img, stock } = item;
@@ -12,6 +13,7 @@ export const ItemDetail = (item) => {
   };
 
   return (
+    <div className={style.itemDetail}>
     <Card style={{ width: "18rem", cursor: "pointer" }}>
     <Card.Img variant="top" src={img} />
     <Card.Body>
@@ -26,5 +28,6 @@ export const ItemDetail = (item) => {
       />
     </Card.Body>
   </Card>
+  </div>
   );
 };
